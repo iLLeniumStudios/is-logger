@@ -1,8 +1,8 @@
 Logger = {}
 
-Logger.Endpoint = "http://gelf-fivem.logs.nodusroleplay.net/gelf"
+Logger.Endpoint = ""
 Logger.ServerPort = 25252
-Logger.ServerName = "Nodus-Live"
+Logger.ServerName = ""
 Logger.Debug = true
 Logger.Target = "GrayLog"
 
