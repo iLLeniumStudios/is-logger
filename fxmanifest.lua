@@ -12,7 +12,6 @@ client_scripts {
     'client/locale.lua',
     'client/functions.lua',
     'client/client.lua',
-    'client/config.lua'
 }
 
 server_scripts {
@@ -20,4 +19,14 @@ server_scripts {
     'server.lua',
     'functions.lua',
     'events.lua',
+}
+
+escrow_ignore {
+    'config.lua',
+    'functions.lua',
+    'client/config.lua',
+    'client/weapons.lua',
+    'client/locale.lua',
+    'client/functions.lua',
+    'client/client.lua'
 }
