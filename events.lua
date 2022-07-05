@@ -93,7 +93,8 @@ RegisterNetEvent("is-logger:server:LogChatMessageEvent", LogChatMessageEvent)
 
 
 RegisterNetEvent('qb-log:server:CreateLog', function(name, title, color, message, tagEveryone)
-    LogWithPlayerInformation(name, message, {
-        title = title,
+    local sanitized, _ = message:gsub("*", "")
+    LogWithPlayerInformation(name, sanitized, {
+        kind = title,
     })
 end)
