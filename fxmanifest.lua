@@ -7,6 +7,7 @@ author 'iLLeniumStudios'
 lua54 'yes'
 
 client_scripts {
+    'client/config.lua',
     'client/weapons.lua',
     'client/locale.lua',
     'client/functions.lua',
