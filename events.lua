@@ -1,4 +1,14 @@
-local QBCore = exports["qb-core"]:GetCoreObject()
+local QBCore = nil
+if Logger.UseQBExport then
+     exports["qb-core"]:GetCoreObject()
+else
+    CreateThread(function()
+        while QBCore == nil do
+            TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+            Wait(0)
+        end
+    end)
+end
 
 local function LogWithPlayerInformation(event, message, attributes, permission)
     local src = source

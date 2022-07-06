@@ -9,3 +9,4 @@ Logger.Target = "GrayLog"
 Logger.EnableStreamFilter = true
 Logger.StreamFilterKey = "permission"
 Logger.StreamFilterValue = "Admin"
+Logger.UseQBExport = true
