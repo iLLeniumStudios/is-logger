@@ -1,6 +1,6 @@
 local QBCore = nil
 if Logger.UseQBExport then
-    QBCore = exports["qb-core"]:GetCoreObject()
+    QBCore = exports[Logger.CoreName]:GetCoreObject()
 else
     CreateThread(function()
         while QBCore == nil do

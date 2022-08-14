@@ -10,3 +10,4 @@ Logger.EnableStreamFilter = true
 Logger.StreamFilterKey = "permission"
 Logger.StreamFilterValue = "Admin"
 Logger.UseQBExport = true
+Logger.CoreName = "qb-core"
