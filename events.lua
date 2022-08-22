@@ -1,13 +1,15 @@
 local QBCore = nil
-if Logger.UseQBExport then
-    QBCore = exports[Logger.CoreName]:GetCoreObject()
-else
-    CreateThread(function()
-        while QBCore == nil do
-            TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-            Wait(0)
-        end
-    end)
+if Logger.Framework == "QB" then
+    if Logger.UseQBExport then
+        QBCore = exports[Logger.CoreName]:GetCoreObject()
+    else
+        CreateThread(function()
+            while QBCore == nil do
+                TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+                Wait(0)
+            end
+        end)
+    end
 end
 
 local function LogWithPlayerInformation(event, message, attributes, permission)
@@ -23,15 +25,17 @@ local function LogWithPlayerInformation(event, message, attributes, permission)
     end
 
     if src then
+        if Logger.Framework == "QB" then
+            local player = QBCore.Functions.GetPlayer(src)
+            if player then
+                attributes["citizenID"] = player.PlayerData.citizenid
+            end
+        end
 
-        local player = QBCore.Functions.GetPlayer(src)
         local identifiers = GetPlayerIdentifiersStripped(src, permission)
         local playerName = GetPlayerName(src)
 
         attributes["playerName"] = playerName
-        if player then
-            attributes["citizenID"] = player.PlayerData.citizenid
-        end
 
         for k, v in pairs(identifiers) do
             attributes[k] = v
