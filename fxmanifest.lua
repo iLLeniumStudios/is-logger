@@ -20,13 +20,3 @@ server_scripts {
     'functions.lua',
     'events.lua',
 }
-
-escrow_ignore {
-    'config.lua',
-    'functions.lua',
-    'client/config.lua',
-    'client/weapons.lua',
-    'client/locale.lua',
-    'client/functions.lua',
-    'client/client.lua'
-}
