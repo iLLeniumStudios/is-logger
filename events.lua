@@ -64,7 +64,8 @@ end
 local function LogResourceStartedEvent(resourceName)
     if GetCurrentResourceName() == resourceName then
         LogRaw("Logger is Online", {
-            event = "LoggingStarted"
+            event = "LoggingStarted",
+            message = "Logging Started"
         })
     end
     local attributes = {
@@ -77,7 +78,8 @@ end
 local function LogResourceStoppedEvent(resourceName)
     if GetCurrentResourceName() == resourceName then
         LogRaw("Logger is Offline", {
-            event = "LoggingStopped"
+            event = "LoggingStopped",
+            message = "Logging Stopped"
         })
     end
     local attributes = {
@@ -92,6 +94,7 @@ local function LogChatMessageEvent(message)
     local playerName = GetPlayerName(src)
     local attributes = {
         event = "ChatMessage",
+        message = message
     }
     LogWithPlayerInformation("ChatMessage", playerName .. ": " .. message, attributes)
 end
@@ -106,9 +109,16 @@ RegisterNetEvent("is-logger:server:LogWithPlayerInformation", LogWithPlayerInfor
 RegisterNetEvent("is-logger:server:LogChatMessageEvent", LogChatMessageEvent)
 
 
-RegisterNetEvent('qb-log:server:CreateLog', function(name, title, color, message, tagEveryone)
-    local sanitized, _ = message:gsub("*", "")
-    LogWithPlayerInformation(name, sanitized, {
-        kind = title,
-    })
-end)
+-- Disabled for Loki because Loki uses attributes instead of message
+if Logger.Target ~= "Loki" then
+    RegisterNetEvent('qb-log:server:CreateLog', function(name, title, color, message, tagEveryone)
+        local sanitized, _ = message:gsub("*", "")
+        LogWithPlayerInformation(name, sanitized, {
+            kind = title,
+        })
+    end)
+end
+
+exports('LogWithPlayerInformation', LogWithPlayerInformation)
+exports('LogChatMessageEvent', LogChatMessageEvent)
+exports('LogRaw', LogRaw)
