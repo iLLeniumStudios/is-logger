@@ -1,10 +1,11 @@
 Logger = {}
 
-Logger.Endpoint = ""
-Logger.ServerPort = 25252
+Logger.Endpoint = GetConvar("LoggerEndPoint", "")
+Logger.ServerPort = 30120
 Logger.ServerName = ""
 Logger.Debug = true
-Logger.Target = "GrayLog"
+Logger.Target = "Loki"
+Logger.BulkTimer = 30 -- currently only works for loki
 
 Logger.EnableStreamFilter = true
 Logger.StreamFilterKey = "permission"
