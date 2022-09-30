@@ -124,11 +124,7 @@ if Logger.Target == 'Loki' then
         if next(payloads) then
             PerformHttpRequest(Logger.Endpoint, function (errorCode, resultData, resultHeaders)
                 if errorCode  and errorCode ~= "204" and errorCode ~= "200" then
-                    print(Logger.Endpoint)
-                    print("shit nugget")
-                    print(errorCode)
-                    print("[DEBUG] " .. json.encode(payload))
-                    print(resultData)
+                    print('[DEBUG]', errorCode, " There was an issue posting." )
                 else
                     print('SENT LOKI DATA')
                 end
